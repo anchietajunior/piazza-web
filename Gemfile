@@ -27,6 +27,7 @@ group :development do
   gem "web-console"
   gem "i18n-debug"
   gem "solargraph"
+  gem "rubocop-rails"
 end
 
 group :test do
