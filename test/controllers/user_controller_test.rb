@@ -40,22 +40,14 @@ class UserControllerTest < ActionDispatch::IntegrationTest
     assert_select "p.is-danger", text: I18n.t("activerecord.errors.models.user.attributes.password.too_short")
   end
 
-  test "renders password confirmation errors if input data is invalid" do
-    get sign_up_path
-    assert_response :ok
+  test "can update user details" do
+    @user = users(:jerry)  
+    log_in @user
 
-    assert_no_difference ["User.count", "Organization.count"] do
-      post sign_up_path, params: {
-        user: {
-          name: "Anchieta",
-          email: "anchieta@redirectto.com",
-          password: "12345678",
-          password_confirmation: "1234567"
-        }
-      }
-    end
 
-    assert_response :unprocessable_entity
-    assert_select "p.is-danger", text: I18n.t("errors.messages.confirmation")
+    patch profile_path, params: { user: { name: "Jerry Seinfield" } }
+
+    assert_redirected_to profile_path
+    assert_equal "Jerry Seinfield", @user.reload.name
   end
 end

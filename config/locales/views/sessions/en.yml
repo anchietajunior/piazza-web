@@ -3,6 +3,8 @@ en:
     new:
       title: Log in
       submit: Login
+      sign_up_message: Haven't got an account yet?
+      sign_up: Sign up now.
     create:
       success: You're logged in
       incorrect_details: The email of password provided was incorrect. Please try again

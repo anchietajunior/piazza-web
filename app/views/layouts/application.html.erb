@@ -12,7 +12,7 @@
 
   <body>
     <main>
-      <%= render 'shared/navbar' %>
+      <%= render 'shared/navbar' unless turbo_native_app? %>
       <%= render "shared/flashes" %>
       <%= yield %>
     </main>
